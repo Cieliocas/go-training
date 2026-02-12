@@ -2,8 +2,10 @@ package main
 
 import "fmt"
 
-func alterarCopia(x int ) {
+func alterarCopia(x int) {
+	fmt.Println("Recebido como:", x)
 	x = x * 2
+	fmt.Println("atualizado para:", x)
 }
 
 func main() {
