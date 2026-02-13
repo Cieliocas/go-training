@@ -49,12 +49,13 @@ func (r *Runner) SolicitarValores() error {
 	return nil
 }
 
-func (r *Runner) SolicitarOperacao() (error) {
+func (r *Runner) SolicitarOperacao() error {
 	var operacao string
 	fmt.Println("Escolha a operação (+, -, *, /):")
 	if _, err := fmt.Scanln(&operacao); err != nil {
 		return errors.New("erro: entrada inválida para a operação")
 	}
+
 	switch operacao {
 		case "+", "-", "*", "/":
 			r.operacao = operacao
@@ -67,11 +68,11 @@ func (r *Runner) SolicitarOperacao() (error) {
 func (r *Runner) ExecutarOperacao() {
 	switch r.operacao {
 		case "+":
-			r.resultado = r.calculadora.Somar()
+			fmt.Println("Resultado: ", r.calculadora.Somar())
 		case "-":
-			r.resultado = r.calculadora.Subtrair()
+			fmt.Println("Resultado: ", r.calculadora.Subtrair())
 		case "*":
-			r.resultado = r.calculadora.Multiplicar()
+			fmt.Println("Resultado: ", r.calculadora.Multiplicar())
 		case "/":
 			resultado, err := r.calculadora.Dividir()
 			if err != nil {
@@ -100,7 +101,11 @@ func (r *Runner) Execute() {
 }
 
 func NewRunner(c *Calculadora) *Runner {
-	return &Runner(calculadora: calculadora)
+	return &Runner{calculadora: c}
+}
+
+func main() {
+	calculadora := &Calculadora{}
 	runner := NewRunner(calculadora)
 	runner.Execute()
 }
