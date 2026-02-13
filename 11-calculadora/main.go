@@ -49,22 +49,23 @@ func (r *Runner) SolicitarValores() error {
 	return nil
 }
 
-func (r *Runner) SolicitarOperacao() (string, error) {
+func (r *Runner) SolicitarOperacao() (error) {
 	var operacao string
 	fmt.Println("Escolha a operação (+, -, *, /):")
 	if _, err := fmt.Scanln(&operacao); err != nil {
-		return "", errors.New("erro: entrada inválida para a operação")
+		return errors.New("erro: entrada inválida para a operação")
 	}
 	switch operacao {
 		case "+", "-", "*", "/":
-			return operacao, nil
+			r.operacao = operacao
+			return nil
 		default:
-			return "", errors.New("operação inválida")
+			return errors.New("operação inválida")
 	}
 }
 
-func (r *Runner) ExecutarOperacao(operacao string) {
-	switch operacao {
+func (r *Runner) ExecutarOperacao() {
+	switch r.operacao {
 		case "+":
 			r.resultado = r.calculadora.Somar()
 		case "-":
@@ -79,4 +80,27 @@ func (r *Runner) ExecutarOperacao(operacao string) {
 				fmt.Println("Resultado: ", resultado)
 			}
 	}
+}
+
+func (r *Runner) Execute() {
+	for {
+		if err := r.SolicitarValores(); err != nil {
+			fmt.Println("Erro:", err)
+			continue
+		}
+
+		err := r.SolicitarOperacao()
+		if err != nil {
+			fmt.Println("Erro:", err)
+			continue
+		}
+
+		r.ExecutarOperacao()
+	}
+}
+
+func NewRunner(c *Calculadora) *Runner {
+	return &Runner(calculadora: calculadora)
+	runner := NewRunner(calculadora)
+	runner.Execute()
 }
