@@ -1,1 +1,24 @@
+# OS
 .DS_Store
+Thumbs.db
+
+# Go build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Dependency & workspace files
+vendor/
+go.work
+go.work.sum
+
+# Editors / IDEs
+.vscode/
+.idea/
+
+# Env
+.env

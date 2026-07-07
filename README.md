@@ -26,6 +26,6 @@ Este repositório contém meus estudos diários em Go. O objetivo final é domin
 
 Certifique-se de ter o Go instalado. Para rodar qualquer exemplo:
 ```bash
-git clone [https://github.com/cieliocas/go-training.git](https://github.com/cieliocas/go-training.git)
-cd go-training/nome-da-pasta
+git clone https://github.com/cieliocas/go-training.git
+cd go-training/Base/nome-da-pasta
 go run main.go
